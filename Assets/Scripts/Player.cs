@@ -4,10 +4,13 @@ using UnityEngine;
 
 public class Player : MonoBehaviour {
     // members or variables
+    public float health = 3.0f;
     public float moveSpeed = 7.0f;
+    public float score = 0.0f;
 
     public GameObject bulletSpawner;
     public GameObject bullet;
+    public Transform initial;
 
     // methods or functions
 	
@@ -43,6 +46,19 @@ public class Player : MonoBehaviour {
             Shoot();
         }
 	}
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Enemy")
+        {
+            health -= 1.0f;
+            transform.Translate(initial.position, Space.World);
+            if(health < 0)
+            {
+                print("Player died!");
+                // Destroy(this.gameObject);
+            }
+        }
+    }
     void Shoot(){
         Instantiate(bullet.transform, bulletSpawner.transform.position, bulletSpawner.transform.rotation);
     }
