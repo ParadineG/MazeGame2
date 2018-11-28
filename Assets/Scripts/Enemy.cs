@@ -11,10 +11,13 @@ public class Enemy : MonoBehaviour {
     private float passedTime = 0.0f;
     private GameObject player;
 
-	// Use this for initialization
-	void Start ()
+    private Vector3 position;
+
+    // Use this for initialization
+    void Start ()
     {
         player = GameObject.FindWithTag("Player");
+        position = gameObject.transform.position;
 	}
 	
 	// Update is called once per frame
