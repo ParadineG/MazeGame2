@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour {
     // members or variables
@@ -10,6 +11,8 @@ public class Player : MonoBehaviour {
 
     public GameObject bulletSpawner;
     public GameObject bullet;
+    public GameObject textLife;
+    public GameObject textScore;
 
     private Vector3 position;
 
@@ -17,6 +20,7 @@ public class Player : MonoBehaviour {
     void Start()
     {
         position = gameObject.transform.position; 
+
     }
     // Update is called once per frame
     void Update () {
@@ -49,10 +53,13 @@ public class Player : MonoBehaviour {
         if(Input.GetKeyDown(KeyCode.Space)){
             Shoot();
         }
-	}
-    void OnTriggerEnter(Collider other)
+
+        textLife.GetComponent<Text>().text = health.ToString();
+        textScore.GetComponent<Text>().text = score.ToString();
+    }
+    void OnCollisionEnter(Collision other)
     {
-        if (other.tag == "Enemy")
+        if (other.transform.tag == "Enemy")
         {
             health -= 1.0f;
             transform.position = position;

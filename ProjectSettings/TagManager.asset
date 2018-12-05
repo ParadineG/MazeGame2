@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Enemy
   - Wall
+  - Life
+  - Score
   layers:
   - Default
   - TransparentFX

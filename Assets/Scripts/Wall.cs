@@ -10,8 +10,12 @@ public class Wall : MonoBehaviour {
 	void Start () {
         GenerateWall();
 	}
-    void GenerateWall()
+    public void GenerateWall()
     {
+        foreach (Transform child in level.transform)
+        {
+            Destroy(child.gameObject);
+        }
         for (int x = -16; x <= 16; x++)
         {
             Transform wall0 = Instantiate(wall.transform, new Vector3(x, 0.5f, 16), Quaternion.identity);
